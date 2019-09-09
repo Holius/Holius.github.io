@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src='Main.js'> </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js'> </script> 
+    <script src='chart.js'> </script>
+
+</head>
+<body>
+    <h1 id="location"> What's the weather like in San Antonio, Texas? </h1>
+    <form id="zip"> 
+        <label for="zipInput">Zip Code 
+            <input id="zipInput" type="text" placeholder="Your 5 digit zip-code here.">
+        </label>
+        <button type="submit"> Submit </button>
+        <p id="result"> </p>
+    </form>
+
+<script>
+    function zipSubmit (event){
+    event.preventDefault(); 
+    deleteId("result");
+    const result = document.getElementById("result");
+    const regex = /^\d{5}$/ig;er
+    const zipInput = document.getElementById("zipInput");
+    if (regex.test(zipInput.value)) {
+        deleteId("weatherboxes");
+        deleteId("chartSec");
+        workingData(zipInput.value);
+        newLocation(zipInput.value);
+        const child = document.createElement("canvas");
+        const parent = document.getElementById("chartSec");
+        parent.appendChild(child);
+        parent.getElementsByTagName("canvas")[0].setAttribute("id", "chart");
+        renderChart(zipInput.value);
+
+    } 
+    else  {
+        return result.textContent = "That was an invalid input: Use five numbers in a row.";
+    }
+    }
+    document.getElementById("zip").addEventListener('submit', zipSubmit)
+</script>
+
+        <div id="weatherboxes" ></div>
+        <br>
+      <div id="chartSec"> <canvas id="chart"></canvas> </div>
+
+    
+    <script> 
+
+workingData();
+renderChart();
+        </script>
+            
+
+</body>
+
+</html>
+
