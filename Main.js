@@ -1,5 +1,5 @@
 const getForecast = async (input = '78288') => {
-      const beginUrl = 'http://api.apixu.com/v1/forecast.json?key=';
+      const beginUrl = 'https://api.apixu.com/v1/forecast.json?key=';
       const apiKey = 'c9286079b51746a1b2403137191408';
       const zip = '&q=';
       const defaultDays = '&days=7';
